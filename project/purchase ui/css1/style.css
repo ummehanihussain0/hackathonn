@@ -1,0 +1,24 @@
+#whole3{
+    border-radius: 35px;
+background: #FFF;
+box-shadow: 0px 2px 12px 3px #61B846;
+}
+.saylanitext{color: #61B846;
+font-family: Inter;
+font-size: 23px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; 
+}
+ .discountstore-text{
+    color: #024F9D;
+font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: 25px; 
+ }
+ .img-grocery
+{
+    border-radius: 15px;
+}
