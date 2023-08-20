@@ -1,13 +1,13 @@
 #whole{
-    display:block;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
+display:block;
+justify-content: center;
+align-items: center;
+border-radius: 35px;
 background: #FFF;
-box-shadow: 0px 2px 12px 3px #61B846;
+box-shadow: 100% #61B846;
 backdrop-filter: blur(25px);
-width: 100%; 
 max-width: 400px; 
+width: 100%; 
 margin: 0 auto; 
 padding: 20px;
 flex-shrink: 0;
@@ -21,6 +21,8 @@ padding: 20px;
 flex-shrink: 0;
 justify-content: center;
 align-items: center;
+
+}
 #frame{
     display:flex;
    justify-content: center;
@@ -142,10 +144,14 @@ input[type="submit"]:hover {
     display: flex;
     align-items: center;
 }
-label {
-    display: inline-block;
-    margin-right: 20px;
-    color: black;
+.sign {
+    justify-content: center;
+    align-items: center;
+    color: #024F9D;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px; 
     font-family: sans-serif;
 }
 #whole1{
@@ -153,10 +159,10 @@ label {
     place-items: center;
 border-radius: 25px;
 background: rgba(97, 184, 70, 0.01);
-box-shadow: 2px 2px 4px 5px #D4D3D3;
-width: 100%; /* Set the width of the body to 100% */
-max-width: 400px; /* Set the maximum width of the body */
-margin: 0 auto; /* Center the body horizontally */
+box-shadow: 100% #D4D3D3;
+width: 100%; 
+max-width: 400px; 
+margin: 0 auto; 
 padding: 20px;
 flex-shrink: 0;
 }
