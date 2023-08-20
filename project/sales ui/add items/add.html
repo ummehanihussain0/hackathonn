@@ -60,9 +60,9 @@
           </div>
         </div>
       </div>
-      <script>
-        const firebaseConfig = {
-          apiKey: "AIzaSyAf2smZBKLerNAB5wxWi-ysBAF3yuDJQ-g",
+          <script>
+              const firebaseConfig = {
+                apiKey: "AIzaSyAf2smZBKLerNAB5wxWi-ysBAF3yuDJQ-g",
   authDomain: "hani0-fa553.firebaseapp.com",
   databaseURL: "https://hani0-fa553-default-rtdb.firebaseio.com",
   projectId: "hani0-fa553",
@@ -70,58 +70,57 @@
   messagingSenderId: "203751539987",
   appId: "1:203751539987:web:e1bc4484219ff6630e86e6",
   measurementId: "G-Q5N3QMPRW2"
-        };
+              };
+      
+              const appp = firebase.initializeApp(firebaseConfig);
+              const storage = firebase.storage();
+              const storageRef = storage.ref();
+              const database = firebase.database();
+      
+              const fileUpload = (file) => {
+                  // ... Your fileUpload function here ...
+              };
+      
+              const addProduct = async () => {
+                  let fileInput = document.getElementById('fileInput');
+                  let file = fileInput.files[0];
+                  await fileUpload(file);
+              }
+      
+              const getProducts = () => {
+                  let productsRef = database.ref('products');
+                  productsRef.once('value').then(function (snapshot) {
+                      let products = [];
+                      snapshot.forEach(function (childSnapshot) {
+                          let productData = childSnapshot.val();
+                          products.push(productData);
+                      });
+      
+                      // Update the data for the first two products (assuming you have at least two products)
+                      for (let i = 0; i < 2 && i < products.length; i++) {
+                          let product = products[i];
+                          let productName = document.getElementsByClassName('page17-text22')[i];
+                          let productDesc = document.getElementsByClassName('page17-text24')[i];
+                          let productPrice = document.getElementsByClassName('page17-text29')[i];
+                          let productImage = document.getElementsByClassName('page17-rectangle21')[i];
+      
+                          productName.innerHTML = product.name;
+                          productDesc.innerHTML = product.description;
+                          productPrice.innerHTML = `Rs. ${product.price} - per Kg`;
+                          productImage.src = product.image;
+                      }
+      
+                  }).catch(function (error) {
+                      console.error('Error retrieving product data:', error);
+                  });
+              }
+      
+              getProducts();
+      
+              const addButton = document.getElementById('addButton');
+              addButton.addEventListener('click', addProduct);
+          </script>
 
-
-        // Initialize Firebase app
-        const app = firebase.initializeApp(firebaseConfig);
-        const storage = firebase.storage();
-        const storageRef = storage.ref();
-
-        const fileUpload = async (file) => {
-            let product = {
-                name: document.getElementById('itemname').value,
-                category: document.getElementById('category').value,
-                description: document.getElementById('description').value,
-                unit: document.getElementById('unit-name').value,
-                price: document.getElementById('unit-price').value,
-                quantity: document.getElementById('quantity').value,
-                image: '',
-            };
-
-            if (file) {
-                const imageRef = storageRef.child('images/' + file.name);
-                
-                try {
-                    // Upload the file to Firebase Storage
-                    await imageRef.put(file);
-                    console.log('Image uploaded successfully!');
-                    
-                    // Get the download URL of the uploaded image
-                    const imageUrl = await imageRef.getDownloadURL();
-                    console.log('Download URL:', imageUrl);
-                    product.image = imageUrl;
-
-                    // Store the product data in the Realtime Database
-                    const productsRef = database.ref('products');
-                    await productsRef.push(product);
-                    console.log('Product data uploaded successfully');
-                } catch (error) {
-                    console.error('Error uploading image or product data:', error);
-                }
-            }
-        };
-
-        const addProduct = () => {
-            const fileInput = document.getElementById('fileInput');
-            const file = fileInput.files[0];
-            fileUpload(file);
-        };
-
-        
-        const addButton = document.getElementById('add-button');
-        addButton.addEventListener('click', addProduct);
-    </script>
 
 </body>
 </html>
