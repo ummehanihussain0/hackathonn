@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <link href="../css1/style.css" rel="stylesheet" />
+        <div class="page5-container">
+          <div class="page5-page5">
+            <span class="page5-text"><span>Settings</span></span>
+            <img src="../../img/purchase uihome page/profile/Ellipse 4.png" class="page5-ellipse4" />
+            <span class="page5-text02"><span>Orders</span></span>
+            <img src="../../img/purchase uihome page/profile/Line 1.png" alt="Line13022" class="page5-line1" />
+            <img src="../../img/purchase uihome page/profile/Group 5.png" class="page5-group5" />
+            <span class="page5-text04"><span>Update Full Name</span></span>
+            <div class="page5-group5">
+            </div>
+            <span class="page5-text06"><span>Inzamam Malik</span></span>
+            <span class="page5-text08"><span>Just Now - Pending</span></span>
+            <span class="page5-text10"><span>03022004480</span></span>
+            <span class="page5-text12">
+              <span>
+                <span>2 x ITEM NAME</span>
+                <br />
+                <span>3 x ITEM NAME</span>
+                <br />
+                <span></span>
+                <br />
+                <span></span>
+              </span>
+            </span>
+            <span class="page5-text21"><span>$ 185.00</span></span>
+            <img src="../../img/purchase uihome page/profile/Rectangle 50.png" class="page5-rectangle50" />
+            <span class="page5-text23"><span>Total</span></span>
+            <span class="page5-text25"><span>Inzamam Malik</span></span>
+            <span class="page5-text27"><span>2 Feb 2023 - In Progress</span></span>
+            <span class="page5-text29"><span>03022004480</span></span>
+            <span class="page5-text31">
+              <span>
+                <span>2 x ITEM NAME</span>
+                <br />
+                <span>3 x ITEM NAME</span>
+                <br />
+                <span></span>
+                <br />
+                <span></span>
+              </span>
+            </span>
+            <span class="page5-text40"><span>$ 43.35</span></span>
+            <img src="../../img/purchase uihome page/profile/Rectangle 50.png" class="page5-rectangle51" />
+            <span class="page5-text42"><span>Total</span></span>
+            <span class="page5-text44"><span>Inzamam Malik</span></span>
+            <span class="page5-text46"><span>2 Feb 2023 - Delivered</span></span>
+            <span class="page5-text48"><span>03022004480</span></span>
+            <span class="page5-text50">
+              <span>
+                <span>2 x ITEM NAME</span>
+                <br />
+                <span>3 x ITEM NAME</span>
+                <br />
+                <span></span>
+                <br />
+                <span></span>
+              </span>
+            </span>
+            <span class="page5-text59"><span>$ 43.35</span></span>
+            <img src alt="Rectangle523024" class="page5-rectangle52" />
+            <span class="page5-text61"><span>Total</span></span>
+            <footer>
+            <img src="../../img/purchase uihome page/profile/Rectangle 10.png"class="page5-rectangle10" />
+            <span class="page5-text63" onclick="logout()"><span>Logout</span></span>
+            <img src="../../img/purchase uihome page/profile/image 5.png" class="page5-image5" />
+            <img src="../../img/purchase uihome page/profile/image 4.png" class="page5-image4" />
+            </footer>
+          </div>
+        </div>
+      </div>
+      <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-storage.js"></script>
+      <script>
+   const firebaseConfig = {
+            apiKey: "AIzaSyAf2smZBKLerNAB5wxWi-ysBAF3yuDJQ-g",
+  authDomain: "hani0-fa553.firebaseapp.com",
+  databaseURL: "https://hani0-fa553-default-rtdb.firebaseio.com",
+  projectId: "hani0-fa553",
+  storageBucket: "hani0-fa553.appspot.com",
+  messagingSenderId: "203751539987",
+  appId: "1:203751539987:web:e1bc4484219ff6630e86e6",
+  measurementId: "G-Q5N3QMPRW2"
+        };
+        function isAuthenticated() {
+    const user = sessionStorage.getItem('user');
+    return user !== null;
+}
+
+const logout = () => {
+    sessionStorage.removeItem('user');
+    console.log('loging out....');
+    window.location.href = '../../signin/signin.html' ;
+}
+      </script>
+</body>
+</html>
