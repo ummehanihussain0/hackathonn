@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-storage.js"></script>
+</head>
+<body>
+    <div>
+        <link href="../css2/style.css" rel="stylesheet" />
+        <div class="page17-container">
+          <div class="page17-page17">
+            <img src="../../img/sales ui img/add items/Rectangle 10.png"  class="page17-rectangle10" />
+            <a href=""><span class="page17-text"><span>Add Product</span></span></a>
+            <a href="../homee.html"><img src="../../img/sales ui img/add items/Vector.png"  alt="Vector1846" class="page17-vector" /></a>
+            <img src="../../img/sales ui img/add items/Ellipse 4.png"  class="page17-ellipse4" />
+            <span class="page17-text02"><span>Mr. Ahmed</span></span>
+            <span class="page17-text04"><span>Add New Item</span></span>
+            <span class="page17-text06"><span>Admin</span></span>
+            <img src="../../img/sales ui img/add items/Rectangle 71.png"  class="page17-rectangle64" />
+            <img src="../../img/sales ui img/add items/Rectangle 71.png"  class="page17-rectangle70" />
+            <img src="../../img/sales ui img/add items/Rectangle 71.png"  class="page17-rectangle71" />
+            <span class="page17-text08"><span><input type="text" id="itemname" class="item-name" placeholder="Item Name" required></span></span>
+            <img src="../../img/sales ui img/add items/Rectangle 71.png"  class="page17-rectangle75" />
+            <span class="page17-text10"><span><input type="text" class="item-name" id="quantity" placeholder="Pcs. / Kg / dozen" required></span></span></span>
+            <span class="page17-text12"><span><input type="text" class="item-name" id="description" placeholder="Describe this Item"></span></span>
+            <img src="../../img/sales ui img/add items/Rectangle 71.png" class="page17-rectangle74" />
+            <span class="page17-text14"><span><input type="text" class="item-name" id="category" placeholder="Select Category" required></span></span>
+
+
+
+            <div class="page17-group3">
+              <A href="./add.html"><img src="../../img/sales ui img/add (1).png" class="page17-image31" /></A>
+              <span class="page17-text16"><span>Add Items</span></span>
+            </div>
+            <span class="page17-text18"><a href="../account/account.html"><span>Account</span></a></span>
+            <span class="page17-text20"></span>
+            <div class="page17-group2">
+              <span class="page17-text21"><A href="../homee.html"><span>Home</span></A></span>
+              <img src="../../img/sales ui img/home icon.png" class="page17-image29" />
+            </div>
+            <img src="../../img/sales ui img/add items/image 30.png" class="page17-image30" />
+            <img src="../../img/sales ui img/add items/Rectangle 71.png" class="page17-rectangle711" />
+            <div class="input-container">
+              <input type="file" id="fileInput" style="display: none;" accept="image/*">
+              <label for="fileInput">
+                  <img src="../../img/sales ui img/add items/image 32.png" class="page17-image32" alt="Camera Image">
+              </label>
+          </div>
+            <span class="page17-text23" id="unit-name"><span>Unit Name:</span></span>
+            <img src="../../img/sales ui img/add items/Rectangle 71.png" class="page17-rectangle76" />
+            <span class="page17-text25"><span><input type="text" class="item-name" id="unit-price" placeholder="Price" required></span></span>
+            <span class="page17-text27" ><span>Unit Price:</span></span>
+            <img
+              src="../../img/sales ui img/list_alt_FILL0_wght400_GRAD0_opsz48 1.png"
+              class="page17-listalt-fill0wght400grad0opsz481"
+            />
+          </div>
+        </div>
+      </div>
+      <script>
+        const firebaseConfig = {
+          apiKey: "AIzaSyAf2smZBKLerNAB5wxWi-ysBAF3yuDJQ-g",
+  authDomain: "hani0-fa553.firebaseapp.com",
+  databaseURL: "https://hani0-fa553-default-rtdb.firebaseio.com",
+  projectId: "hani0-fa553",
+  storageBucket: "hani0-fa553.appspot.com",
+  messagingSenderId: "203751539987",
+  appId: "1:203751539987:web:e1bc4484219ff6630e86e6",
+  measurementId: "G-Q5N3QMPRW2"
+        };
+
+
+        // Initialize Firebase app
+        const app = firebase.initializeApp(firebaseConfig);
+        const storage = firebase.storage();
+        const storageRef = storage.ref();
+
+        const fileUpload = async (file) => {
+            let product = {
+                name: document.getElementById('itemname').value,
+                category: document.getElementById('category').value,
+                description: document.getElementById('description').value,
+                unit: document.getElementById('unit-name').value,
+                price: document.getElementById('unit-price').value,
+                quantity: document.getElementById('quantity').value,
+                image: '',
+            };
+
+            if (file) {
+                const imageRef = storageRef.child('images/' + file.name);
+                
+                try {
+                    // Upload the file to Firebase Storage
+                    await imageRef.put(file);
+                    console.log('Image uploaded successfully!');
+                    
+                    // Get the download URL of the uploaded image
+                    const imageUrl = await imageRef.getDownloadURL();
+                    console.log('Download URL:', imageUrl);
+                    product.image = imageUrl;
+
+                    // Store the product data in the Realtime Database
+                    const productsRef = database.ref('products');
+                    await productsRef.push(product);
+                    console.log('Product data uploaded successfully');
+                } catch (error) {
+                    console.error('Error uploading image or product data:', error);
+                }
+            }
+        };
+
+        const addProduct = () => {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            fileUpload(file);
+        };
+
+        
+        const addButton = document.getElementById('add-button');
+        addButton.addEventListener('click', addProduct);
+    </script>
+
+</body>
+</html>
